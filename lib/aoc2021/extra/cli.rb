@@ -26,7 +26,7 @@ module AOC2021
         title = day_title(solution, day)
 
         begin
-          require ::File.join('aoc2021', solution)
+          require ::File.join('aoc2021', 'days', solution)
         rescue StandardError
           solution = 'day'
         end
