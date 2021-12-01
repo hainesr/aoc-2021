@@ -18,10 +18,14 @@ module AOC2021
       count_increments(@input)
     end
 
-    def count_increments(input)
-      previous = input.first
+    def part2
+      count_increments(@input, window: 3)
+    end
 
-      input.reduce(0) do |sum, i|
+    def count_increments(input, window: 1)
+      previous = input[0, window].sum
+
+      input.each_cons(window).map(&:sum).reduce(0) do |sum, i|
         sum += 1 if i > previous
         previous = i
         sum

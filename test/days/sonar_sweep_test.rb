@@ -18,5 +18,6 @@ class AOC2021::SonarSweepTest < MiniTest::Test
 
   def test_count_increments
     assert_equal(7, @ss.count_increments(REPORT))
+    assert_equal(5, @ss.count_increments(REPORT, window: 3))
   end
 end
