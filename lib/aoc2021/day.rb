@@ -11,13 +11,14 @@ require 'benchmark'
 module AOC2021
   class Day
     FORMAT = "%n #{Benchmark::FORMAT}".freeze
+    DEFAULT_MESSAGE = "hasn't been completed yet."
 
     def setup; end
 
     def run
       setup_time = Benchmark.measure('  Setup:') { setup }
-      part1_time = Benchmark.measure(' Part 1:') { part1 }
-      part2_time = Benchmark.measure(' Part 2:') { part2 }
+      part1_time = Benchmark.measure(' Part 1:') { puts "Part 1: #{part1}" }
+      part2_time = Benchmark.measure(' Part 2:') { puts "Part 2: #{part2}" }
 
       puts
       puts "Timings: #{Benchmark::CAPTION}"
@@ -27,11 +28,11 @@ module AOC2021
     end
 
     def part1
-      puts "Part 1: hasn't been completed yet."
+      DEFAULT_MESSAGE
     end
 
     def part2
-      puts "Part 2: hasn't been completed yet."
+      DEFAULT_MESSAGE
     end
 
     private
