@@ -1,0 +1,35 @@
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 3.0
+
+Metrics/AbcSize:
+  Max: 32
+  Exclude:
+    - test/**/*.rb
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 35
+  Exclude:
+    - test/**/*.rb
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Naming/MethodParameterName:
+  AllowedNames: w, x, y, z
+
+# Allow compact child definitions in the tests for brevity.
+Style/ClassAndModuleChildren:
+  Exclude:
+    - test/**/*.rb
+
+Style/Documentation:
+  Enabled: false
