@@ -23,6 +23,11 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 10
 
+# Can allow short heredoc delimiters in the tests.
+Naming/HeredocDelimiterNaming:
+  Exclude:
+    - test/**/*.rb
+
 Naming/MethodParameterName:
   AllowedNames: w, x, y, z
 
