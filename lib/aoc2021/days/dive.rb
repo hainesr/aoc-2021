@@ -18,6 +18,10 @@ module AOC2021
       find_destination_coords(@input).reduce(&:*)
     end
 
+    def part2
+      find_destination_coords_aim(@input).reduce(&:*)
+    end
+
     def find_destination_coords(input)
       h = 0
       d = 0
@@ -30,6 +34,26 @@ module AOC2021
           d -= mag
         when :down
           d += mag
+        end
+      end
+
+      [h, d]
+    end
+
+    def find_destination_coords_aim(input)
+      h = 0
+      d = 0
+      a = 0
+
+      input.each do |dir, mag|
+        case dir
+        when :forward
+          h += mag
+          d += a * mag
+        when :up
+          a -= mag
+        when :down
+          a += mag
         end
       end
 

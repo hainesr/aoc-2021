@@ -21,11 +21,15 @@ class AOC2021::DiveTest < MiniTest::Test
 
   def setup
     @d = AOC2021::Dive.new
+    @directions = @d.read_directions(COURSE)
   end
 
   def test_find_destination_coords
-    directions = @d.read_directions(COURSE)
-    assert_equal([15, 10], @d.find_destination_coords(directions))
+    assert_equal([15, 10], @d.find_destination_coords(@directions))
+  end
+
+  def test_find_destination_coords_aim
+    assert_equal([15, 60], @d.find_destination_coords_aim(@directions))
   end
 
   def test_read_directions
