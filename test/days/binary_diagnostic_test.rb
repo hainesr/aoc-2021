@@ -32,4 +32,8 @@ class AOC2021::BinaryDiagnosticTest < MiniTest::Test
   def test_power_consumption
     assert_equal([22, 9], @bd.power_consumption(INPUT))
   end
+
+  def test_life_support_rating
+    assert_equal([23, 10], @bd.life_support_rating(INPUT))
+  end
 end

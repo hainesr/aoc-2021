@@ -18,6 +18,10 @@ module AOC2021
       power_consumption(@input).reduce(&:*)
     end
 
+    def part2
+      life_support_rating(@input).reduce(&:*)
+    end
+
     def power_consumption(input)
       half = input.length / 2
 
@@ -26,6 +30,32 @@ module AOC2021
       epsilon = sums.map { |s| s > half ? '0' : '1' }.join.to_i(2)
 
       [gamma, epsilon]
+    end
+
+    def life_support_rating(input)
+      [generator_rating(input.dup), scrubber_rating(input.dup)]
+    end
+
+    def generator_rating(input, column = 0)
+      return input[0].to_i(2) if input.length == 1
+
+      groups = input.group_by { |line| line[column] }
+      if groups['0'].length > groups['1'].length
+        generator_rating(groups['0'], column += 1)
+      else
+        generator_rating(groups['1'], column += 1)
+      end
+    end
+
+    def scrubber_rating(input, column = 0)
+      return input[0].to_i(2) if input.length == 1
+
+      groups = input.group_by { |line| line[column] }
+      if groups['1'].length < groups['0'].length
+        scrubber_rating(groups['1'], column += 1)
+      else
+        scrubber_rating(groups['0'], column += 1)
+      end
     end
   end
 end
