@@ -23,11 +23,15 @@ module AOC2021
     end
 
     def power_consumption(input)
-      half = input.length / 2
+      gamma = 0
+      epsilon = 0
 
-      sums = input.map(&:chars).map { |l| l.map(&:to_i) }.transpose.map(&:sum)
-      gamma = sums.map { |s| s > half ? '1' : '0' }.join.to_i(2)
-      epsilon = sums.map { |s| s > half ? '0' : '1' }.join.to_i(2)
+      input[0].length.times do |column|
+        groups = input.group_by { |line| line[column] }
+        min, max = groups.minmax_by { |_, group| group.length }.map(&:first)
+        gamma = (gamma << 1) + max.to_i
+        epsilon = (epsilon << 1) + min.to_i
+      end
 
       [gamma, epsilon]
     end
