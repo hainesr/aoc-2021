@@ -18,7 +18,8 @@ module AOC2021
     nil, # There is no day zero!
     'sonar_sweep',
     'dive',
-    'binary_diagnostic'
+    'binary_diagnostic',
+    'giant_squid'
   ].freeze
 
   def self.class_from_day(day)
