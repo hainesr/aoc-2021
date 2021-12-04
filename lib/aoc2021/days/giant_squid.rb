@@ -19,6 +19,11 @@ module AOC2021
       remaining.sum * winner
     end
 
+    def part2
+      winner, remaining = play(@boards, @numbers, first: false)
+      remaining.sum * winner
+    end
+
     def move(boards, number)
       boards.map do |board|
         board.map do |line|
@@ -34,12 +39,15 @@ module AOC2021
       false
     end
 
-    def play(boards, numbers)
+    def play(boards, numbers, first: true)
       numbers.each do |number|
         boards = move(boards, number)
 
         boards.each do |board|
-          return [number, board.flatten.compact] if won?(board)
+          next unless won?(board)
+          return [number, board.flatten.compact] if first || boards.length == 1
+
+          boards.delete(board)
         end
       end
     end

@@ -82,5 +82,10 @@ class AOC2021::GiantSquidTest < MiniTest::Test
       [24, [10, 16, 15, 19, 18, 8, 26, 20, 22, 13, 6, 12, 3]],
       @gs.play(boards, numbers)
     )
+
+    assert_equal(
+      [13, [3, 15, 22, 18, 19, 8, 25, 20, 12, 6]],
+      @gs.play(boards, numbers, first: false)
+    )
   end
 end
