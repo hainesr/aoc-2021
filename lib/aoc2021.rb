@@ -19,7 +19,8 @@ module AOC2021
     'sonar_sweep',
     'dive',
     'binary_diagnostic',
-    'giant_squid'
+    'giant_squid',
+    'hydrothermal_venture'
   ].freeze
 
   def self.class_from_day(day)
