@@ -47,5 +47,8 @@ class AOC2021::HydrothermalVentureTest < MiniTest::Test
   def test_map_overlaps
     overlaps = @hv.map_overlaps(PARSED_COORDS)
     assert_equal(5, overlaps.count { |_, v| v > 1 })
+
+    overlaps = @hv.map_overlaps(PARSED_COORDS, aligned_only: false)
+    assert_equal(12, overlaps.count { |_, v| v > 1 })
   end
 end
