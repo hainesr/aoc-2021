@@ -30,6 +30,13 @@ class AOC2021::LanternfishTest < MiniTest::Test
     assert_equal(5934, fish.sum)
   end
 
+  def test_days_part2
+    fish = @l.tally_fish(FISH)
+    fish = @l.days(fish, days: 256)
+
+    assert_equal(26_984_457_539, fish.sum)
+  end
+
   def test_tally_fish
     assert_equal([0, 1, 1, 2, 1, 0, 0, 0, 0], @l.tally_fish(FISH))
   end

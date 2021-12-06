@@ -15,7 +15,11 @@ module AOC2021
     end
 
     def part1
-      days(@input, days: 80).sum
+      days(@input.dup, days: 80).sum
+    end
+
+    def part2
+      days(@input.dup, days: 256).sum
     end
 
     def days(fish, days: 1)
