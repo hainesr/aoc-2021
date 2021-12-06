@@ -20,7 +20,8 @@ module AOC2021
     'dive',
     'binary_diagnostic',
     'giant_squid',
-    'hydrothermal_venture'
+    'hydrothermal_venture',
+    'lanternfish'
   ].freeze
 
   def self.class_from_day(day)
