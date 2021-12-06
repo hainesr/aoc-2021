@@ -34,7 +34,7 @@ module AOC2021
 
     def tally_fish(input)
       fish = [0] * 9
-      input.split(',').map(&:to_i).sort.tally.each do |k, v|
+      input.split(',').map(&:to_i).tally.each do |k, v|
         fish[k] = v
       end
 
