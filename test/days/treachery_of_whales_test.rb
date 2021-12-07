@@ -25,4 +25,8 @@ class AOC2021::TreacheryOfWhalesTest < MiniTest::Test
   def test_fuel_calculator
     assert_equal(37, @tw.fuel_calculator(CRABS))
   end
+
+  def test_fuel_calculator_max
+    assert_equal(168, @tw.fuel_calculator_max(CRABS))
+  end
 end
