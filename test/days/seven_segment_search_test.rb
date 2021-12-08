@@ -10,7 +10,7 @@ require 'test_helper'
 require 'aoc2021/days/seven_segment_search'
 
 class AOC2021::SevenSegmentSearchTest < MiniTest::Test
-  INPUT = <<~EOI.split("\n").map { |l| l.split(' | ').map(&:split) }
+  RAW_INPUT = <<~EOI
     be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
     edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
     fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
@@ -22,6 +22,12 @@ class AOC2021::SevenSegmentSearchTest < MiniTest::Test
     egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
     gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
   EOI
+
+  INPUT = RAW_INPUT.split("\n").map do |line|
+    line.split(' | ').map do |seq|
+      seq.split.map { |num| num.chars.sort }
+    end
+  end
 
   def setup
     @sss = AOC2021::SevenSegmentSearch.new

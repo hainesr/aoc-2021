@@ -12,7 +12,9 @@ module AOC2021
   class SevenSegmentSearch < Day
     def setup
       @input = read_input_file.split("\n").map do |line|
-        line.split(' | ').map(&:split)
+        line.split(' | ').map do |seq|
+          seq.split.map { |num| num.chars.sort }
+        end
       end
     end
 
