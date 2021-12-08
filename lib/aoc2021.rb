@@ -22,7 +22,8 @@ module AOC2021
     'giant_squid',
     'hydrothermal_venture',
     'lanternfish',
-    'treachery_of_whales'
+    'treachery_of_whales',
+    'seven_segment_search'
   ].freeze
 
   def self.class_from_day(day)
