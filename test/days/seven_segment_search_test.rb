@@ -29,11 +29,33 @@ class AOC2021::SevenSegmentSearchTest < MiniTest::Test
     end
   end
 
+  SIGNALS = %w[
+    acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab
+  ].map { |num| num.chars.sort }
+
+  OUTPUT = %w[cdfeb fcadb cdfeb cdbaf].map { |num| num.chars.sort }
+
   def setup
     @sss = AOC2021::SevenSegmentSearch.new
   end
 
   def test_count_unique_outputs
     assert_equal(26, @sss.count_unique_outputs(INPUT))
+  end
+
+  def test_identify_numbers_for_line
+    lookup = @sss.identify_numbers_for_line(SIGNALS)
+
+    [8, 5, 2, 3, 7, 9, 6, 4, 0, 1].each_with_index do |n, i|
+      assert_equal(n, lookup[SIGNALS[i]])
+    end
+  end
+
+  def test_decode_line
+    assert_equal([5, 3, 5, 3], @sss.decode_line([SIGNALS, OUTPUT]))
+  end
+
+  def test_decode
+    assert_equal(61_229, @sss.decode(INPUT))
   end
 end
