@@ -23,7 +23,8 @@ module AOC2021
     'hydrothermal_venture',
     'lanternfish',
     'treachery_of_whales',
-    'seven_segment_search'
+    'seven_segment_search',
+    'smoke_basin'
   ].freeze
 
   def self.class_from_day(day)
