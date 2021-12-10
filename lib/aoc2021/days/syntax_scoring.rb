@@ -18,10 +18,10 @@ module AOC2021
     }.freeze
 
     SCORES = {
-      ')' => 3,
-      ']' => 57,
-      '}' => 1197,
-      '>' => 25_137
+      ')' => [3, 1],
+      ']' => [57, 2],
+      '}' => [1197, 3],
+      '>' => [25_137, 4]
     }.freeze
 
     OPENER = MATCH.keys.freeze
@@ -31,16 +31,33 @@ module AOC2021
     end
 
     def part1
-      scores(@input).sum
+      corruption_scores(@input).sum
     end
 
-    def scores(input)
+    def part2
+      scores = autocomplete_scores(@input)
+      scores[scores.length / 2]
+    end
+
+    def corruption_scores(input)
       input.map { |line| find_line_error(line) }.compact.map do |char|
-        SCORES[char]
+        SCORES[char][0]
       end
     end
 
-    def find_line_error(line)
+    def autocomplete_scores(input)
+      completions = input.map do |line|
+        find_line_error(line, return_missing: true)
+      end.compact
+
+      completions.map do |missing|
+        missing.reduce(0) do |acc, char|
+          (acc * 5) + SCORES[char][1]
+        end
+      end.sort
+    end
+
+    def find_line_error(line, return_missing: false)
       chars = line.chars
       match = [MATCH[chars.shift]]
 
@@ -48,11 +65,13 @@ module AOC2021
         if OPENER.include?(char)
           match.push MATCH[char]
         else
-          return char unless match.pop == char
+          unless match.pop == char
+            return return_missing ? nil : char
+          end
         end
       end
 
-      nil
+      return_missing ? match.reverse : nil
     end
   end
 end
