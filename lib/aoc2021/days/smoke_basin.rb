@@ -11,18 +11,43 @@ require 'aoc2021'
 module AOC2021
   class SmokeBasin < Day
     def setup
-      @input = read_input_file.split("\n").map do |line|
+      @map = read_input_file.split("\n").map do |line|
         line.chars.map(&:to_i)
       end
+
+      @low_points = find_low_points(@map)
     end
 
     def part1
-      risk_level(@input)
+      risk_level
     end
 
-    def risk_level(input)
-      points = find_low_points(input)
-      points.values.sum + points.length
+    def part2
+      basin_sizes.max(3).reduce(&:*)
+    end
+
+    def risk_level(low_points = @low_points)
+      low_points.values.sum + low_points.length
+    end
+
+    def basin_sizes(map = @map, low_points = @low_points)
+      low_points.keys.map do |point|
+        explore_basin(map, point).length
+      end
+    end
+
+    def explore_basin(map, start, basin = [])
+      return basin if basin.include?(start)
+
+      basin << start
+
+      max_y = map.length - 1
+      max_x = map[0].length - 1
+      neighbours(start[1], start[0], max_x, max_y).map do |nx, ny|
+        next if map[ny][nx] == 9
+
+        explore_basin(map, [ny, nx], basin)
+      end.compact.flatten(1).uniq
     end
 
     def find_low_points(input)

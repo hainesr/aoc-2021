@@ -30,6 +30,26 @@ class AOC2021::SmokeBasinTest < MiniTest::Test
   end
 
   def test_risk_level
-    assert_equal(15, @sb.risk_level(MAP))
+    assert_equal(15, @sb.risk_level(@sb.find_low_points(MAP)))
+  end
+
+  def test_explore_basin
+    assert_equal(
+      [[0, 1], [0, 0], [1, 0]],
+      @sb.explore_basin(MAP, [0, 1])
+    )
+
+    assert_equal(
+      [
+        [4, 6], [3, 6], [3, 7], [2, 7], [4, 7], [4, 8], [3, 8], [4, 9], [4, 5]
+      ],
+      @sb.explore_basin(MAP, [4, 6])
+    )
+  end
+
+  def test_basin_sizes
+    assert_equal(
+      [3, 9, 14, 9], @sb.basin_sizes(MAP, @sb.find_low_points(MAP))
+    )
   end
 end
