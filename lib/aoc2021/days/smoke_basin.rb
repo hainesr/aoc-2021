@@ -32,13 +32,8 @@ module AOC2021
 
       input.each_with_index do |line, y|
         line.each_with_index do |point, x|
-          up = y.zero? ? nil : [x, y - 1]
-          down = y == max_y ? nil : [x, y + 1]
-          left = x.zero? ? nil : [x - 1, y]
-          right = x == max_x ? nil : [x + 1, y]
-
-          low = [up, down, left, right].compact.each do |tx, ty|
-            break false if input[ty][tx] <= point
+          low = neighbours(x, y, max_x, max_y).each do |nx, ny|
+            break false if input[ny][nx] <= point
           end
 
           low_points[[y, x]] = point if low
@@ -46,6 +41,15 @@ module AOC2021
       end
 
       low_points
+    end
+
+    def neighbours(x, y, max_x, max_y)
+      [
+        y.zero? ? nil : [x, y - 1],
+        y == max_y ? nil : [x, y + 1],
+        x.zero? ? nil : [x - 1, y],
+        x == max_x ? nil : [x + 1, y]
+      ].compact
     end
   end
 end
