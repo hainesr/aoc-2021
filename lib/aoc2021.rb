@@ -24,7 +24,8 @@ module AOC2021
     'lanternfish',
     'treachery_of_whales',
     'seven_segment_search',
-    'smoke_basin'
+    'smoke_basin',
+    'syntax_scoring'
   ].freeze
 
   def self.class_from_day(day)
