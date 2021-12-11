@@ -25,7 +25,8 @@ module AOC2021
     'treachery_of_whales',
     'seven_segment_search',
     'smoke_basin',
-    'syntax_scoring'
+    'syntax_scoring',
+    'dumbo_octopus'
   ].freeze
 
   def self.class_from_day(day)
