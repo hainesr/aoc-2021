@@ -25,14 +25,13 @@ class AOC2021::DumboOctopusTest < MiniTest::Test
 
   def setup
     @do = AOC2021::DumboOctopus.new
+    @grid = @do.build_grid(INPUT)
   end
 
   def test_build_grid
-    grid = @do.build_grid(INPUT)
-
-    assert_equal(5, grid[[0, 0]])
-    assert_equal(6, grid[[9, 9]])
-    assert_equal(8, grid[[5, 4]])
+    assert_equal(5, @grid[[0, 0]])
+    assert_equal(6, @grid[[9, 9]])
+    assert_equal(8, @grid[[5, 4]])
   end
 
   def test_neighbours_for
@@ -53,7 +52,7 @@ class AOC2021::DumboOctopusTest < MiniTest::Test
   end
 
   def test_step
-    grid = @do.build_grid(INPUT)
+    grid = @grid.dup
 
     assert_equal([], @do.step(grid))
     assert_equal(35, @do.step(grid).length)
@@ -61,15 +60,11 @@ class AOC2021::DumboOctopusTest < MiniTest::Test
   end
 
   def test_part1
-    grid = @do.build_grid(INPUT)
-
-    assert_equal(204, @do.part1(grid.dup, 10))
-    assert_equal(1656, @do.part1(grid))
+    assert_equal(204, @do.part1(@grid.dup, 10))
+    assert_equal(1656, @do.part1(@grid.dup))
   end
 
   def test_part2
-    grid = @do.build_grid(INPUT)
-
-    assert_equal(195, @do.part2(grid))
+    assert_equal(195, @do.part2(@grid.dup))
   end
 end
