@@ -66,4 +66,10 @@ class AOC2021::DumboOctopusTest < MiniTest::Test
     assert_equal(204, @do.part1(grid.dup, 10))
     assert_equal(1656, @do.part1(grid))
   end
+
+  def test_part2
+    grid = @do.build_grid(INPUT)
+
+    assert_equal(195, @do.part2(grid))
+  end
 end

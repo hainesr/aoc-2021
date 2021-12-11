@@ -22,6 +22,12 @@ module AOC2021
       end
     end
 
+    def part2(grid = @grid.dup)
+      (1..).each do |i|
+        break i if step(grid).length == 100
+      end
+    end
+
     def step(grid)
       flashed = []
       grid.each { |octopus, _| grid[octopus] += 1 }
