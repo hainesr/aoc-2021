@@ -26,7 +26,8 @@ module AOC2021
     'seven_segment_search',
     'smoke_basin',
     'syntax_scoring',
-    'dumbo_octopus'
+    'dumbo_octopus',
+    'passage_pathing'
   ].freeze
 
   def self.class_from_day(day)
