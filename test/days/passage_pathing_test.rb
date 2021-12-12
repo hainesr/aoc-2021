@@ -22,6 +22,7 @@ class AOC2021::PassagePathingTest < MiniTest::Test
 
   def setup
     @pp = AOC2021::PassagePathing.new
+    @graph = @pp.read_graph(INPUT)
   end
 
   def test_lower?
@@ -52,7 +53,7 @@ class AOC2021::PassagePathingTest < MiniTest::Test
       {
         start: [:A, :b], A: [:c, :b, :end], c: [:A], b: [:A, :d, :end], d: [:b]
       },
-      @pp.read_graph(INPUT)
+      @graph
     )
   end
 
@@ -85,10 +86,10 @@ class AOC2021::PassagePathingTest < MiniTest::Test
   end
 
   def test_part1
-    assert_equal(10, @pp.part1(@pp.read_graph(INPUT)))
+    assert_equal(10, @pp.part1(@graph))
   end
 
   def test_part2
-    assert_equal(36, @pp.part2(@pp.read_graph(INPUT)))
+    assert_equal(36, @pp.part2(@graph))
   end
 end
