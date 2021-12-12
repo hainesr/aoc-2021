@@ -20,7 +20,13 @@ module AOC2021
       paths.length
     end
 
-    def follow_paths(graph, start, finish, path, paths)
+    def part2(graph = @graph)
+      paths = []
+      follow_paths(graph, :start, :end, [], paths, part2: true)
+      paths.length
+    end
+
+    def follow_paths(graph, start, finish, path, paths, part2: false)
       path += [start]
 
       if start == finish
@@ -29,9 +35,17 @@ module AOC2021
       end
 
       graph[start].each do |cave|
-        not_seen = !lower?(cave) || !path.include?(cave)
-        follow_paths(graph, cave, finish, path, paths) if not_seen
+        valid = !lower?(cave) ||
+                (part2 ? valid?(path, cave) : !path.include?(cave))
+        follow_paths(graph, cave, finish, path, paths, part2: part2) if valid
       end
+    end
+
+    def valid?(path, cave)
+      return true unless path.include?(cave)
+      return false if path.count(cave) > 1
+
+      (path + [cave]).select(&method(:lower?)).tally.values.count(2) < 2
     end
 
     def read_graph(input)

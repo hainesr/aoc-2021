@@ -32,6 +32,21 @@ class AOC2021::PassagePathingTest < MiniTest::Test
     refute(@pp.lower?(:HN))
   end
 
+  def test_valid?
+    assert(@pp.valid?([], :a))
+    assert(@pp.valid?([:a], :a))
+    assert(@pp.valid?([:a, :b], :a))
+    assert(@pp.valid?([:b, :b], :a))
+    assert(@pp.valid?([:b, :b], :B))
+    assert(@pp.valid?([:b, :b, :c], :a))
+    assert(@pp.valid?([:B, :B, :a], :a))
+    assert(@pp.valid?([:B, :B, :B], :a))
+    assert(@pp.valid?([:B, :B, :B, :a], :a))
+    refute(@pp.valid?([:a, :a], :a))
+    refute(@pp.valid?([:a, :b, :b], :a))
+    refute(@pp.valid?([:a, :b, :b, :B, :B, :B], :a))
+  end
+
   def test_read_graph
     assert_equal(
       {
@@ -56,9 +71,24 @@ class AOC2021::PassagePathingTest < MiniTest::Test
       @pp.follow_paths(graph, :start, :end, [], paths)
       assert_equal(result, paths)
     end
+
+    paths = []
+    @pp.follow_paths(graphs[2][0], :start, :end, [], paths, part2: true)
+    assert_equal(
+      [
+        [:start, :A, :b, :A, :b, :A, :end],
+        [:start, :A, :b, :A, :end],
+        [:start, :A, :end]
+      ],
+      paths
+    )
   end
 
   def test_part1
     assert_equal(10, @pp.part1(@pp.read_graph(INPUT)))
+  end
+
+  def test_part2
+    assert_equal(36, @pp.part2(@pp.read_graph(INPUT)))
   end
 end

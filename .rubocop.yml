@@ -20,6 +20,9 @@ Metrics/MethodLength:
   Exclude:
     - test/**/*.rb
 
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
 Metrics/PerceivedComplexity:
   Max: 10
 
