@@ -18,6 +18,14 @@ module AOC2021
       fold(@folds[0], @dots).length
     end
 
+    def part2
+      @folds.each do |fold|
+        @dots = fold(fold, @dots)
+      end
+
+      "\n#{display(@dots)}"
+    end
+
     def fold(fold, dots)
       axis, num = fold
 
@@ -27,6 +35,19 @@ module AOC2021
         dot
       end.uniq
     end
+
+    # rubocop:disable Style/StringConcatenation
+    def display(dots)
+      max_x = dots.max_by { |dot| dot[0] }[0]
+      max_y = dots.max_by { |dot| dot[1] }[1]
+
+      (0..max_y).reduce('') do |disp, y|
+        disp + (0..max_x).reduce('') do |str, x|
+          str + (dots.include?([x, y]) ? '#' : ' ')
+        end + "\n"
+      end
+    end
+    # rubocop:enable Style/StringConcatenation
 
     def parse_input(input)
       dots = input[0].split("\n").map do |line|

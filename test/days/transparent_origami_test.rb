@@ -61,4 +61,16 @@ class AOC2021::TransparentOrigamiTest < MiniTest::Test
     dots = @to.fold(folds[1], dots)
     assert_equal(16, dots.length)
   end
+
+  def test_display
+    dots = [
+      [4, 4], [0, 0], [1, 4], [0, 3], [0, 4], [4, 3], [4, 0], [4, 2],
+      [4, 1], [0, 1], [0, 2], [3, 4], [3, 0], [2, 4], [2, 0], [1, 0]
+    ]
+
+    assert_equal(
+      "#####\n#   #\n#   #\n#   #\n#####\n",
+      @to.display(dots)
+    )
+  end
 end
