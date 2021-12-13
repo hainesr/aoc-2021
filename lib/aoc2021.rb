@@ -27,7 +27,8 @@ module AOC2021
     'smoke_basin',
     'syntax_scoring',
     'dumbo_octopus',
-    'passage_pathing'
+    'passage_pathing',
+    'transparent_origami'
   ].freeze
 
   def self.class_from_day(day)

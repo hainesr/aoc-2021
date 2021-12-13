@@ -44,3 +44,6 @@ Style/Documentation:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+Style/WordArray:
+  MinSize: 4
