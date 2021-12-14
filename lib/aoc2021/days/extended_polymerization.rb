@@ -31,9 +31,7 @@ module AOC2021
     end
 
     def insert(pairs, insertions)
-      new_pairs = Hash.new(0)
-
-      pairs.each do |pair, num|
+      pairs.each_with_object(Hash.new(0)) do |(pair, num), new_pairs|
         insertion = insertions[pair]
         if insertion.nil?
           new_pairs[pair] = num
@@ -42,18 +40,12 @@ module AOC2021
           new_pairs[[insertion, pair[1]]] += num
         end
       end
-
-      new_pairs
     end
 
     def count_letters(pairs)
-      counts = Hash.new(0)
-
-      pairs.each do |(letter, _), n|
+      pairs.each_with_object(Hash.new(0)) do |((letter, _), n), counts|
         counts[letter] += n
       end
-
-      counts
     end
 
     def read_input(input)
