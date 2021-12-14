@@ -27,8 +27,7 @@ module AOC2021
         pairs = insert(pairs, insertions)
       end
 
-      counts = count_letters(pairs).values
-      counts.max - counts.min
+      -count_letters(pairs).values.minmax.reduce(&:-)
     end
 
     def insert(pairs, insertions)
