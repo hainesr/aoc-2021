@@ -33,15 +33,14 @@ class AOC2021::ExtendedPolymerizationTest < MiniTest::Test
 
   def setup
     @ep = AOC2021::ExtendedPolymerization.new
-    @template, @pairs, @insertions = @ep.read_input(INPUT)
+    @pairs, @insertions = @ep.read_input(INPUT)
   end
 
   def test_read_input
     assert_equal(
       [
-        'NNCB',
         {
-          ['N', 'N'] => 1, ['N', 'C'] => 1, ['C', 'B'] => 1
+          ['N', 'N'] => 1, ['N', 'C'] => 1, ['C', 'B'] => 1, ['B', '!'] => 1
         },
         {
           ['C', 'H'] => 'B', ['H', 'H'] => 'N', ['C', 'B'] => 'H',
@@ -52,7 +51,7 @@ class AOC2021::ExtendedPolymerizationTest < MiniTest::Test
           ['C', 'N'] => 'C'
         }
       ],
-      [@template, @pairs, @insertions]
+      [@pairs, @insertions]
     )
   end
 
@@ -61,7 +60,7 @@ class AOC2021::ExtendedPolymerizationTest < MiniTest::Test
 
     %w[
       NCNBCHB NBCCNBBBCBHCB NBBBCNCCNBBNBNBBCHBHHBCHB
-    ].map { |poly| poly.chars.each_cons(2).tally }.each do |poly|
+    ].map { |poly| "#{poly}!".chars.each_cons(2).tally }.each do |poly|
       assert_equal(poly, pairs)
       pairs = @ep.insert(pairs, @insertions)
     end
@@ -72,16 +71,16 @@ class AOC2021::ExtendedPolymerizationTest < MiniTest::Test
       NNCB NCNBCHB NBCCNBBBCBHCB NBBBCNCCNBBNBNBBCHBHHBCHB
     ].map(&:chars).each do |poly|
       assert_equal(
-        poly.tally, @ep.count_letters(@template, poly.each_cons(2).tally)
+        poly.tally, @ep.count_letters((poly + ['!']).each_cons(2).tally)
       )
     end
   end
 
   def test_quantity
-    assert_equal(1588, @ep.quantity(@template, @pairs, @insertions, 10))
+    assert_equal(1588, @ep.quantity(@pairs, @insertions, 10))
 
     assert_equal(
-      2_188_189_693_529, @ep.quantity(@template, @pairs, @insertions, 40)
+      2_188_189_693_529, @ep.quantity(@pairs, @insertions, 40)
     )
   end
 end
