@@ -19,6 +19,10 @@ module AOC2021
       quantity(@template, @pairs.dup, @insertions, 10)
     end
 
+    def part2
+      quantity(@template, @pairs.dup, @insertions, 40)
+    end
+
     def quantity(template, pairs, insertions, repeat)
       repeat.times do
         pairs = insert(pairs, insertions)

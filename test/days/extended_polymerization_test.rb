@@ -79,5 +79,9 @@ class AOC2021::ExtendedPolymerizationTest < MiniTest::Test
 
   def test_quantity
     assert_equal(1588, @ep.quantity(@template, @pairs, @insertions, 10))
+
+    assert_equal(
+      2_188_189_693_529, @ep.quantity(@template, @pairs, @insertions, 40)
+    )
   end
 end
