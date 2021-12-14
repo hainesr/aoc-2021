@@ -28,7 +28,8 @@ module AOC2021
     'syntax_scoring',
     'dumbo_octopus',
     'passage_pathing',
-    'transparent_origami'
+    'transparent_origami',
+    'extended_polymerization'
   ].freeze
 
   def self.class_from_day(day)
