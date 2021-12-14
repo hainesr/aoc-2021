@@ -15,11 +15,11 @@ module AOC2021
     end
 
     def part1
-      quantity(@pairs.dup, @insertions, 10)
+      quantity(@pairs, @insertions, 10)
     end
 
     def part2
-      quantity(@pairs.dup, @insertions, 40)
+      quantity(@pairs, @insertions, 40)
     end
 
     def quantity(pairs, insertions, repeat)
