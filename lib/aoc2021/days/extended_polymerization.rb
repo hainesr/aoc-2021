@@ -15,12 +15,16 @@ module AOC2021
         read_input(read_input_file.split("\n\n"))
     end
 
-    def part1(temp = @template, pairs = @pairs.dup, ins = @insertions)
-      10.times do
-        pairs = insert(pairs, ins)
+    def part1
+      quantity(@template, @pairs.dup, @insertions, 10)
+    end
+
+    def quantity(template, pairs, insertions, repeat)
+      repeat.times do
+        pairs = insert(pairs, insertions)
       end
 
-      counts = count_letters(temp, pairs).values
+      counts = count_letters(template, pairs).values
       counts.max - counts.min
     end
 
