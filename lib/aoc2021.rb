@@ -29,7 +29,8 @@ module AOC2021
     'dumbo_octopus',
     'passage_pathing',
     'transparent_origami',
-    'extended_polymerization'
+    'extended_polymerization',
+    'chiton'
   ].freeze
 
   def self.class_from_day(day)
