@@ -30,7 +30,8 @@ module AOC2021
     'passage_pathing',
     'transparent_origami',
     'extended_polymerization',
-    'chiton'
+    'chiton',
+    'packet_decoder'
   ].freeze
 
   def self.class_from_day(day)
