@@ -8,6 +8,8 @@
 
 require 'aoc2021'
 
+require 'set'
+
 module AOC2021
   class TrickShot < Day
     def setup
@@ -45,11 +47,11 @@ module AOC2021
       x_list = sim_x(target[:x])
       y_list = sim_y(target[:y])
 
-      x_list.each_with_object([]) do |(xv, xs, xz), union|
+      x_list.each_with_object(Set.new) do |(xv, xs, xz), union|
         y_list.each do |(yv, ys)|
           union << [xv, yv] if xs == ys || (xz && (ys > xs))
         end
-      end.uniq
+      end
     end
 
     private
