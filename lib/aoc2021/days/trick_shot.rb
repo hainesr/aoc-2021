@@ -29,5 +29,63 @@ module AOC2021
     def part1(target = @target)
       (1..(target[1].min + 1).abs).sum
     end
+
+    def part2
+      sim(@target).length
+    end
+
+    # Simulate the x and y axes separately noting the 'step' on which they
+    # hit the target. Then produce a union set of the two lists. Only
+    # complication is that the x velocity can hit zero, so note that and
+    # allow the y step to go higher in that instance.
+    def sim(target)
+      x_list = sim_x(target[0])
+      y_list = sim_y(target[1])
+
+      x_list.each_with_object([]) do |(xv, xs, xz), union|
+        y_list.each do |(yv, ys)|
+          union << [xv, yv] if xs == ys || (xz && (ys > xs))
+        end
+      end.uniq
+    end
+
+    private
+
+    def sim_x(target)
+      range = ((Math.sqrt(target.min * 2).round)..target.max)
+      range.each_with_object([]) do |vel, list|
+        x = 0
+        st_vel = vel
+        step = 1
+
+        while x <= target.max
+          x += vel
+          vel -= 1 if vel.positive?
+
+          list << [st_vel, step, vel.zero?] if target.cover?(x)
+          break if vel.zero?
+
+          step += 1
+        end
+      end.compact
+    end
+
+    def sim_y(target)
+      range = (target.min..((target.min + 1).abs))
+      range.each_with_object([]) do |vel, list|
+        y = 0
+        st_vel = vel
+        step = 1
+
+        while y >= target.min
+          y += vel
+          vel -= 1
+
+          list << [st_vel, step] if target.cover?(y)
+
+          step += 1
+        end
+      end.compact
+    end
   end
 end

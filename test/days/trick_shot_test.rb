@@ -19,4 +19,8 @@ class AOC2021::TrickShotTest < MiniTest::Test
   def test_part1
     assert_equal(45, @ts.part1(TARGET))
   end
+
+  def test_sim
+    assert_equal(112, @ts.sim(TARGET).length)
+  end
 end
