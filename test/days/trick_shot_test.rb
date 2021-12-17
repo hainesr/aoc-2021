@@ -10,7 +10,10 @@ require 'test_helper'
 require 'aoc2021/days/trick_shot'
 
 class AOC2021::TrickShotTest < MiniTest::Test
-  TARGET = [(20..30), (-10..-5)].freeze
+  TARGET = {
+    x: (20..30),
+    y: (-10..-5)
+  }.freeze
 
   def setup
     @ts = AOC2021::TrickShot.new

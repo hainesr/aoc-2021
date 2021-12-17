@@ -11,7 +11,10 @@ require 'aoc2021'
 module AOC2021
   class TrickShot < Day
     def setup
-      @target = [(277..318), (-92..-53)]
+      @target = {
+        x: (277..318),
+        y: (-92..-53)
+      }
     end
 
     # For part 1 we can ignore x, as it just needs to be whatever gets
@@ -27,7 +30,7 @@ module AOC2021
     # every step the highest height is the sum of all the numbers 1 to
     # (-target_min_y + 1).abs.
     def part1(target = @target)
-      (1..(target[1].min + 1).abs).sum
+      (1..(target[:y].min + 1).abs).sum
     end
 
     def part2
@@ -39,8 +42,8 @@ module AOC2021
     # complication is that the x velocity can hit zero, so note that and
     # allow the y step to go higher in that instance.
     def sim(target)
-      x_list = sim_x(target[0])
-      y_list = sim_y(target[1])
+      x_list = sim_x(target[:x])
+      y_list = sim_y(target[:y])
 
       x_list.each_with_object([]) do |(xv, xs, xz), union|
         y_list.each do |(yv, ys)|
@@ -67,7 +70,7 @@ module AOC2021
 
           step += 1
         end
-      end.compact
+      end
     end
 
     def sim_y(target)
@@ -85,7 +88,7 @@ module AOC2021
 
           step += 1
         end
-      end.compact
+      end
     end
   end
 end
