@@ -34,6 +34,9 @@ class AOC2021::PacketDecoderTest < MiniTest::Test
   ].freeze
   PACKET4 = '8A004A801A8002F478'
   PACKET5 = '620080001611562C8802118E34'
+  PACKET6 = 'C200B40A82'
+  PACKET7 = '04005AC33890'
+  PACKET8 = '9C0141080250320F1802104A08'
 
   def setup
     @pd = AOC2021::PacketDecoder.new
@@ -46,8 +49,16 @@ class AOC2021::PacketDecoderTest < MiniTest::Test
   end
 
   def test_decode_packet
-    assert_equal(6, @pd.decode_packet(PACKET1[1].dup))
-    assert_equal(16, @pd.decode_packet(@pd.read_packet(PACKET4)))
-    assert_equal(12, @pd.decode_packet(@pd.read_packet(PACKET5)))
+    # Literal packet.
+    assert_equal([6, 2021], @pd.decode_packet(PACKET1[1].dup))
+
+    # Test summing of versions. Don't have the ground truth for the values.
+    assert_equal(16, @pd.decode_packet(@pd.read_packet(PACKET4)).first)
+    assert_equal(12, @pd.decode_packet(@pd.read_packet(PACKET5)).first)
+
+    # Test calculated values. Don't have the ground truth for the versions.
+    assert_equal(3, @pd.decode_packet(@pd.read_packet(PACKET6)).last)
+    assert_equal(54, @pd.decode_packet(@pd.read_packet(PACKET7)).last)
+    assert_equal(1, @pd.decode_packet(@pd.read_packet(PACKET8)).last)
   end
 end

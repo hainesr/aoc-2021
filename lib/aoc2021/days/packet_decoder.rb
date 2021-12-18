@@ -10,12 +10,26 @@ require 'aoc2021'
 
 module AOC2021
   class PacketDecoder < Day
+    OPS = {
+      0 => :sum,
+      1 => :mul,
+      2 => :min,
+      3 => :max,
+      5 => :>,
+      6 => :<,
+      7 => :==
+    }.freeze
+
     def setup
-      @packet = read_packet(read_input_file)
+      @packet = decode_packet(read_packet(read_input_file))
     end
 
     def part1
-      decode_packet(@packet)
+      @packet.first
+    end
+
+    def part2
+      @packet.last
     end
 
     def decode_packet(data)
@@ -25,14 +39,14 @@ module AOC2021
       type = shift_decode[3]
 
       if type == 4
-        # Just gobble up the "value" data for now. Don't need it.
+        value = []
         loop do
           block_id = data.shift
-          _block = data.shift(4)
+          value += data.shift(4)
           break if block_id.zero?
         end
 
-        return version
+        return [version, value.join.to_i(2)]
       end
 
       inner_packets =
@@ -47,7 +61,20 @@ module AOC2021
           inner_num.times.map { decode_packet(data) }
         end
 
-      version + inner_packets.sum
+      val = do_op(type, inner_packets.map(&:last))
+
+      [version + inner_packets.sum(&:first), val]
+    end
+
+    def do_op(type, values)
+      case sym = OPS[type]
+      when :sum, :min, :max
+        values.send(sym)
+      when :mul
+        values.reduce(&:*)
+      when :>, :<, :==
+        values[0].send(sym, values[1]) ? 1 : 0
+      end
     end
 
     def read_packet(input)
