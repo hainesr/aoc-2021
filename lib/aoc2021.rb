@@ -32,7 +32,8 @@ module AOC2021
     'extended_polymerization',
     'chiton',
     'packet_decoder',
-    'trick_shot'
+    'trick_shot',
+    'snailfish'
   ].freeze
 
   def self.class_from_day(day)
