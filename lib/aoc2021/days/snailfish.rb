@@ -18,6 +18,12 @@ module AOC2021
       magnitude(add_list(@input))
     end
 
+    def part2
+      @input.permutation(2).map do |n1, n2|
+        magnitude(add(n1, n2))
+      end.max
+    end
+
     def magnitude(number)
       loop do
         max_depth = number.map(&:last).max
