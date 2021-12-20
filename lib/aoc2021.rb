@@ -33,7 +33,8 @@ module AOC2021
     'chiton',
     'packet_decoder',
     'trick_shot',
-    'snailfish'
+    'snailfish',
+    'beacon_scanner'
   ].freeze
 
   def self.class_from_day(day)
