@@ -35,7 +35,8 @@ module AOC2021
     'trick_shot',
     'snailfish',
     'beacon_scanner',
-    'trench_map'
+    'trench_map',
+    'dirac_dice'
   ].freeze
 
   def self.class_from_day(day)
