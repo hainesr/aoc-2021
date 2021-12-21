@@ -34,7 +34,8 @@ module AOC2021
     'packet_decoder',
     'trick_shot',
     'snailfish',
-    'beacon_scanner'
+    'beacon_scanner',
+    'trench_map'
   ].freeze
 
   def self.class_from_day(day)
