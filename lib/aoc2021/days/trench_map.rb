@@ -24,6 +24,14 @@ module AOC2021
       enhance(enhance(@image, @algorithm), @algorithm).values.sum
     end
 
+    def part2
+      image = @image
+      50.times do
+        image = enhance(image, @algorithm)
+      end
+      image.values.sum
+    end
+
     def enhance(image, algorithm, swap_void: true)
       new_void = swap_void ? 1 - image.default : 0
       ((min,),), ((max,),) = image.minmax_by { |k, _| k.first }
