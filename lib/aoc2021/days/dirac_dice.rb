@@ -10,16 +10,9 @@ require 'aoc2021'
 
 module AOC2021
   class DiracDice < Day
-    ROLL_DISTRIBUTIONS = [
-      # Total, frequency
-      [3, 1],
-      [4, 3],
-      [5, 6],
-      [6, 7],
-      [7, 6],
-      [8, 3],
-      [9, 1]
-    ].freeze
+    # Array of [dice total, frequency].
+    ROLL_DISTRIBUTIONS =
+      [1, 2, 3].product([1, 2, 3], [1, 2, 3]).map(&:sum).tally.to_a.freeze
 
     def setup
       @p1_start = 4
