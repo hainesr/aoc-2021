@@ -19,6 +19,8 @@ class AOC2021::DiracDiceTest < MiniTest::Test
   end
 
   def test_quantum_dice
+    skip unless ENV['FULL_DIRAC_DICE_TEST']
+
     wins = @dd.quantum_dice(4, 0, 0, 8, 0, 0, 1)
     assert_equal(444_356_092_776_315, wins.max)
   end
