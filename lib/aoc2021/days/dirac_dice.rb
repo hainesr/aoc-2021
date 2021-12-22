@@ -10,6 +10,17 @@ require 'aoc2021'
 
 module AOC2021
   class DiracDice < Day
+    ROLL_DISTRIBUTIONS = [
+      # Total, frequency
+      [3, 1],
+      [4, 3],
+      [5, 6],
+      [6, 7],
+      [7, 6],
+      [8, 3],
+      [9, 1]
+    ].freeze
+
     def setup
       @p1_start = 4
       @p2_start = 3
@@ -39,5 +50,34 @@ module AOC2021
         return score[1 - player] * (turn + 1) * 3 if score[player] >= 1000
       end
     end
+
+    def part2
+      quantum_dice(@p1_start, 0, 0, @p2_start, 0, 0, 1).max
+    end
+
+    # rubocop:disable Metrics/ParameterLists
+    # Every time we enter this method, we will have swapped the players.
+    def quantum_dice(pos1, score1, wins1, pos2, score2, wins2, multiplier)
+      # The second player(s) will have just had their turn(s).
+      return [wins1, wins2 + multiplier] if score2 >= 21
+
+      total_wins1 = 0
+      total_wins2 = 0
+
+      ROLL_DISTRIBUTIONS.each do |(total, freq)|
+        new_pos = ((pos1 + total - 1) % 10) + 1
+        new_wins2, new_wins1 = quantum_dice(
+          pos2, score2, wins2,
+          new_pos, score1 + new_pos, wins1,
+          multiplier * freq
+        )
+
+        total_wins1 += new_wins1
+        total_wins2 += new_wins2
+      end
+
+      [total_wins1, total_wins2]
+    end
+    # rubocop:enable Metrics/ParameterLists
   end
 end
