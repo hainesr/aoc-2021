@@ -23,6 +23,10 @@ module AOC2021
       @cubes.sum { |c, v| c.intersection(small_cube).size * v }
     end
 
+    def part2
+      @cubes.sum { |c, v| c.size * v }
+    end
+
     # Model a cube using a range for each axis.
     Cube = Struct.new(:x, :y, :z) do
       def intersects?(other)
