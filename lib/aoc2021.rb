@@ -37,7 +37,8 @@ module AOC2021
     'beacon_scanner',
     'trench_map',
     'dirac_dice',
-    'reactor_reboot'
+    'reactor_reboot',
+    'amphipod'
   ].freeze
 
   def self.class_from_day(day)
