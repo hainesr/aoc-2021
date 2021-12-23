@@ -32,7 +32,7 @@ Naming/HeredocDelimiterNaming:
     - test/**/*.rb
 
 Naming/MethodParameterName:
-  AllowedNames: c, w, x, y, z
+  AllowedNames: a, b, c, w, x, y, z
 
 # Allow compact child definitions in the tests for brevity.
 Style/ClassAndModuleChildren:

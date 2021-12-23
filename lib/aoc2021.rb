@@ -36,7 +36,8 @@ module AOC2021
     'snailfish',
     'beacon_scanner',
     'trench_map',
-    'dirac_dice'
+    'dirac_dice',
+    'reactor_reboot'
   ].freeze
 
   def self.class_from_day(day)
