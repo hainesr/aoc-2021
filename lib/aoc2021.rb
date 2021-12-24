@@ -38,7 +38,8 @@ module AOC2021
     'trench_map',
     'dirac_dice',
     'reactor_reboot',
-    'amphipod'
+    'amphipod',
+    'arithmetic_logic_unit'
   ].freeze
 
   def self.class_from_day(day)
