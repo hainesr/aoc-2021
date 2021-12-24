@@ -116,5 +116,25 @@ module AOC2021
 
       59_998_426_997_979
     end
+
+    def part2
+      # The smallest digit for each is:
+      #  - input0  == 1
+      #  - input1  == 3
+      #  - input2  == 6
+      #  - input3  == 2
+      #  - input4  == 1
+      #  - input5  == 1
+      #  - input6  == 1
+      #  - input7  == 1
+      #  - input8  == 4
+      #  - input9  == 8
+      #  - input10 == 1
+      #  - input11 == 3
+      #  - input12 == 1
+      #  - input13 == 5
+
+      13_621_111_481_315
+    end
   end
 end
