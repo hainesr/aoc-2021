@@ -39,7 +39,8 @@ module AOC2021
     'dirac_dice',
     'reactor_reboot',
     'amphipod',
-    'arithmetic_logic_unit'
+    'arithmetic_logic_unit',
+    'sea_cucumber'
   ].freeze
 
   def self.class_from_day(day)

@@ -22,6 +22,7 @@ Metrics/MethodLength:
 
 Metrics/ParameterLists:
   CountKeywordArgs: false
+  MaxOptionalParameters: 4
 
 Metrics/PerceivedComplexity:
   Max: 10
